@@ -1,0 +1,47 @@
+# API Documentation 
+
+#Charbel SONON
+ 
+## Prérequis 
+ 
+Avant de commencer, assurez-vous d'avoir effectué les étapes suivantes : 
+ 
+1. Avoir installé Wamp Server (ou tout autre serveur de base de données MySQL). 
+2. Avoir créé une base de données dans Wamp Server avec le même nom que celui renseigné dans le fichier  application.properties(ici "tp") . 
+3. Modifier les informations d'accès à la base de données dans le fichier  application.properties  avec vos propres informations. 
+ 
+## Exécution de l'API 
+ 
+1. Ouvrez Postman (ou tout autre outil de test d'API). 
+2. Importez la collection d'exemples de requêtes Postman. 
+3. Assurez-vous que le serveur Wamp est en cours d'exécution. 
+4. Exécutez la requête  GET  http://localhost:8080/produitApp/read  pour récupérer la liste des produits(etant vide d'abord, vous devez creer d'abord des produits). 
+5. Exécutez la requête  POST http://localhost:8080/produitApp/create  avec le corps de la requête suivant pour créer une nouvelle voiture :
+json
+{
+   "nom": "Toyota",
+   "prix": 300,
+   "description": "Voiture",
+   "devise": "EUR",
+   "taxe": 25,
+   "date_expiration": "yyyy-mm-dd",
+   "fournisseur": "LandCar"
+}
+Assurez-vous de remplacer `"yyyy-mm-dd"  par une date au format  AAAA-MM-JJ . 
+N'oubliez pas de spéficier dans l'onglet body, le format de données à raw, json avant d'entrer les informations
+Vous pouvez creer autant de produits que vous le voulez.
+ 
+6. Exécutez les autres requêtes de l'API selon vos besoins
+a)delete :  DELETE  http://localhost:8080/produitApp/delete/idDuProduitAsupprimer
+b)update :  PUT     http://localhost:8080/produitApp/delete/idDuProduitAmettreAjour (les informations à mettre à jour sont spécifiées au format json comme lors de la création d'un produit)
+ 
+## Remarque importante 
+ 
+Avant d'exécuter l'API pour la première fois, veuillez suivre les étapes suivantes : 
+ 
+1. Dans le fichier  application.properties , modifiez la valeur de la propriété  spring.jpa.hibernate.ddl-auto  de  "update"  à  "create-drop" . 
+2. Exécutez l'API une fois pour créer les tables de la base de données. 
+3. Après la première exécution, rétablissez la valeur de la propriété  spring.jpa.hibernate.ddl-auto  à  "update"  dans le fichier  application.properties`.
+ Cela est necessaire sinon à chaque fois que vous allez exécutez le projet, la table sera supprimée puis recréée à nous nouveau donc vide.
+ 
+Pour plus de précisions, veuillez m'écrire 
